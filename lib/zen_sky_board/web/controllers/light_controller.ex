@@ -25,8 +25,8 @@ defmodule ZenSkyBoard.Web.LightController do
     render(conn, "show.json", light: light)
   end
 
-  def update(conn, %{"id" => id, "light" => light_params}) do
-    light = Dashboard.get_light!(id)
+  def update(conn, %{"cpuid" => cpuid, "light" => light_params}) do
+    light = Dashboard.get_light_by_cpuid(cpuid)
 
     with {:ok, %Light{} = light} <- Dashboard.update_light(light, light_params) do
       render(conn, "show.json", light: light)
