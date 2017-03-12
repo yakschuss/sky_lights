@@ -11,6 +11,8 @@ defmodule ZenSkyBoard.Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    resources "/lights", LightController, except: [:new, :edit]
   end
 
   scope "/", ZenSkyBoard.Web do
