@@ -1,7 +1,10 @@
 defmodule ZenSkyBoard.Web.PageController do
   use ZenSkyBoard.Web, :controller
 
+  alias ZenSkyBoard.Dashboard
+
   def index(conn, _params) do
-    render conn, "index.html"
+    lights = Dashboard.list_lights()
+    render(conn, "index.html", lights: lights)
   end
 end
