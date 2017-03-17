@@ -3,6 +3,7 @@ defmodule ZenSkyBoard.Web.UserSocket do
 
   ## Channels
   # channel "room:*", ZenSkyBoard.Web.RoomChannel
+  channel "dashboard:lobby", ZenSkyBoard.Web.DashboardChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
