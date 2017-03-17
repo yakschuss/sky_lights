@@ -1,22 +1,40 @@
 defmodule ZenSkyBoard.Web.DashboardChannel do
   use ZenSkyBoard.Web, :channel
 
+  alias ZenSkyBoard.Endpoint
+
   def join("dashboard:lobby", payload, socket) do
     {:ok, "Joined!", socket}
   end
 
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
-  def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
+  def broadcast_change(light) do
+    payload = %{
+      "slack_handle" => light.slack_handle,
+      "full_name" => light.full_name,
+      "color" => light.color,
+      "slack_token" => light.slack_token,
+      "cpuid" => light.cpuid,
+      "id" => light.id,
+    }
+
+    Endpoint.broadcast("dashboard:lobby", "change", payload)
   end
 
-  # It is also common to receive messages from the client and
-  # broadcast to everyone in the current topic (dashboard:lobby).
-  def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
-    {:noreply, socket}
+  def broadcast_delete(cpuid) do
+    payload = %{
+      "cpuid" => cpuid,
+    }
+
+    Endpoint.broadcast("dashboard:lobby", "delete", payload)
   end
 
-  # Add authorization logic here as required.
+  def broadcast_connect(light) do
+    payload = %{
+      "cpuid" => light.cpuid,
+      "color" => light.color,
+    }
+
+    Endpoint.broadcast("dashboard:lobby", "connect", payload)
+  end
 end
+

@@ -8,11 +8,8 @@ defmodule ZenSkyBoard.Web.LightController do
 
   def create(conn, %{"light" => light_params}) do
     with {:ok, %Light{} = light} <- Dashboard.create_light(light_params) do
+      ZenSkyBoard.Endpoint.broadcast_connect(light)
       conn
-      |> put_status(:created)
-      |> put_resp_header("location", light_path(conn, :show, light))
-      #broadcast change
-      # |> render("show.json", light: light)
     end
   end
 
@@ -20,16 +17,14 @@ defmodule ZenSkyBoard.Web.LightController do
     light = Dashboard.get_light_by_cpuid(cpuid)
 
     with {:ok, %Light{} = light} <- Dashboard.update_light(light, light_params) do
-      #broadcast change
-      # render(conn, "show.json", light: light)
+      ZenSkyBoard.Endpoint.broadcast_change(light)
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    light = Dashboard.get_light!(id)
+  def delete(conn, %{"cpuid" => cpuid}) do
+    light = Dashboard.get_light_by_cpuid(cpuid)
     with {:ok, %Light{}} <- Dashboard.delete_light(light) do
-
-      #broadcast change
+      ZenSkyBoard.Endpoint.broadcast_delete(cpuid)
     end
   end
 end
