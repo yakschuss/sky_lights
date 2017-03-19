@@ -11,11 +11,13 @@ defmodule ZenSkyBoard.Web.LightView do
   end
 
   def render("light.json", %{light: light}) do
-    %{id: light.id,
+    %{
+      id: light.id,
       slack_handle: light.slack_handle,
       full_name: light.full_name,
       color: light.color,
       slack_token: light.slack_token,
-      cpuid: light.cpuid}
+      cpuid: light.cpuid
+    }
   end
 end

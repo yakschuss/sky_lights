@@ -11,6 +11,6 @@ defmodule ZenSkyBoard.Repo.Migrations.CreateZenSkyBoard.Dashboard.Light do
 
       timestamps()
     end
-
+    create unique_index(:dashboard_lights, [:cpuid])
   end
 end

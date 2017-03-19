@@ -20,7 +20,7 @@ defmodule ZenSkyBoard.Dashboard do
 
   def update_light(%Light{} = light, attrs) do
     light
-    |> light_changeset(attrs)
+    |> color_changeset(attrs)
     |> Repo.update()
   end
 
@@ -36,5 +36,12 @@ defmodule ZenSkyBoard.Dashboard do
     light
     |> cast(attrs, [:slack_handle, :full_name, :color, :slack_token, :cpuid])
     |> validate_required([:slack_handle, :full_name, :color, :slack_token, :cpuid])
+    |> unique_constraint(:cpuid)
+  end
+
+  defp color_changeset(%Light{} = light, attrs) do
+    light
+    |> cast(attrs, [:color])
+    |> validate_required([:color])
   end
 end

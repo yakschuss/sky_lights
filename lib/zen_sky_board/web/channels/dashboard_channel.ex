@@ -1,7 +1,7 @@
 defmodule ZenSkyBoard.Web.DashboardChannel do
   use ZenSkyBoard.Web, :channel
 
-  alias ZenSkyBoard.Endpoint
+  alias ZenSkyBoard.Web.Endpoint
 
   def join("dashboard:lobby", payload, socket) do
     {:ok, "Joined!", socket}

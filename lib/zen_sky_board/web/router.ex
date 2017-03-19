@@ -12,7 +12,6 @@ defmodule ZenSkyBoard.Web.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    resources "/lights", LightController, except: [:new, :edit]
   end
 
   scope "/", ZenSkyBoard.Web do
@@ -22,7 +21,11 @@ defmodule ZenSkyBoard.Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ZenSkyBoard.Web do
-  #   pipe_through :api
-  # end
+  scope "/api", ZenSkyBoard.Web do
+    pipe_through :api
+
+    post "/lights", LightController, :create
+    post "/lights/:cpuid", LightController, :delete
+    post "/update_light/:cpuid", LightController, :update
+  end
 end
