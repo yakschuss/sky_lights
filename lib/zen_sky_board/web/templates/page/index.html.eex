@@ -1,10 +1,9 @@
 <ul class="lights">
   <%= for light <- @lights do %>
-    <li>
-      <div class="outer-div" style=<%="background-color:#{light.color}"%>>
+    <li class="light" style=<%="background-color:#{light.color}"%> data-cpuid=<%=light.cpuid%>>
+      <div class="outer-div" >
         <div class="username">
-          <%= light.color %>
-          <%= light.slack_handle %>
+          <p><%= String.upcase(light.slack_handle)%></p>
         </div>
       </div>
     </li>

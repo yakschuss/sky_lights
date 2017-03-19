@@ -13,6 +13,7 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import dashboard from './dashboard'
+import $ from 'jquery'
 
 // Import local files
 //

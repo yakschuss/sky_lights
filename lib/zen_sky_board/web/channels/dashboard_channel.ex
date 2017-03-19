@@ -4,7 +4,7 @@ defmodule ZenSkyBoard.Web.DashboardChannel do
   alias ZenSkyBoard.Web.Endpoint
 
   def join("dashboard:lobby", payload, socket) do
-    {:ok, "Joined!", socket}
+    {:ok, socket}
   end
 
   def broadcast_change(light) do
@@ -30,8 +30,12 @@ defmodule ZenSkyBoard.Web.DashboardChannel do
 
   def broadcast_connect(light) do
     payload = %{
-      "cpuid" => light.cpuid,
+      "slack_handle" => light.slack_handle,
+      "full_name" => light.full_name,
       "color" => light.color,
+      "slack_token" => light.slack_token,
+      "cpuid" => light.cpuid,
+      "id" => light.id,
     }
 
     Endpoint.broadcast("dashboard:lobby", "connect", payload)
