@@ -27,3 +27,4 @@ npm-debug.log
 /config/*.secret.exsnode_modules/
 
 node_modules/
+.env
