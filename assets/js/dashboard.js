@@ -8,18 +8,18 @@ let init = () => {
     let color = light["color"]
     let $list = $(".lights")
     let $newLight = $(lightElement(light["slack_handle"], light["color"]))
-    $newLight.attr("data-cpuid", light["cpuid"])
+    $newLight.attr("data-uid", light["uid"])
 
     $list.append($newLight)
   })
 
   channel.on("change", light => {
-    let $li = $(`li[data-cpuid='${light["cpuid"]}']`)
+    let $li = $(`li[data-uid='${light["uid"]}']`)
     $li.css({"backgroundColor": light["color"]})
   })
 
   channel.on("delete", light => {
-    let $li = $(`li[data-cpuid='${light["cpuid"]}']`)
+    let $li = $(`li[data-uid='${light["uid"]}']`)
     $li.remove()
   })
 }

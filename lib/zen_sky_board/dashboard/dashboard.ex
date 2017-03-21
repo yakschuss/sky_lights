@@ -10,7 +10,7 @@ defmodule ZenSkyBoard.Dashboard do
 
   def get_light!(id), do: Repo.get!(Light, id)
 
-  def get_light_by_cpuid(cpuid), do: Repo.get_by(Light, cpuid: cpuid)
+  def get_light_by_uid(uid), do: Repo.get_by(Light, uid: uid)
 
   def create_light(attrs \\ %{}) do
     %Light{}
@@ -34,9 +34,9 @@ defmodule ZenSkyBoard.Dashboard do
 
   defp light_changeset(%Light{} = light, attrs) do
     light
-    |> cast(attrs, [:slack_handle, :full_name, :color, :slack_token, :cpuid])
-    |> validate_required([:slack_handle, :full_name, :color, :slack_token, :cpuid])
-    |> unique_constraint(:cpuid)
+    |> cast(attrs, [:slack_handle, :full_name, :color, :slack_token, :uid])
+    |> validate_required([:slack_handle, :full_name, :color, :slack_token, :uid])
+    |> unique_constraint(:uid)
   end
 
   defp color_changeset(%Light{} = light, attrs) do

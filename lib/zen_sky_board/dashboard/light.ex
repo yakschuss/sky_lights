@@ -6,7 +6,7 @@ defmodule ZenSkyBoard.Dashboard.Light do
     field :full_name, :string
     field :color, :string
     field :slack_token, :string
-    field :cpuid, :integer
+    field :uid, :integer
 
     timestamps()
   end

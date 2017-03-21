@@ -7,10 +7,10 @@ defmodule ZenSkyBoard.Repo.Migrations.CreateZenSkyBoard.Dashboard.Light do
       add :full_name, :string
       add :color, :string
       add :slack_token, :string
-      add :cpuid, :integer
+      add :uid, :integer
 
       timestamps()
     end
-    create unique_index(:dashboard_lights, [:cpuid])
+    create unique_index(:dashboard_lights, [:uid])
   end
 end

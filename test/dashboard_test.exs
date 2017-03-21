@@ -4,9 +4,9 @@ defmodule ZenSkyBoard.DashboardTest do
   alias ZenSkyBoard.Dashboard
   alias ZenSkyBoard.Dashboard.Light
 
-  @create_attrs %{color: "some color", cpuid: 42, full_name: "some full_name", slack_handle: "some slack_handle", slack_token: "some slack_token"}
-  @update_attrs %{color: "some updated color", cpuid: 43, full_name: "some updated full_name", slack_handle: "some updated slack_handle", slack_token: "some updated slack_token"}
-  @invalid_attrs %{color: nil, cpuid: nil, full_name: nil, slack_handle: nil, slack_token: nil}
+  @create_attrs %{color: "some color", uid: 42, full_name: "some full_name", slack_handle: "some slack_handle", slack_token: "some slack_token"}
+  @update_attrs %{color: "some updated color", uid: 43, full_name: "some updated full_name", slack_handle: "some updated slack_handle", slack_token: "some updated slack_token"}
+  @invalid_attrs %{color: nil, uid: nil, full_name: nil, slack_handle: nil, slack_token: nil}
 
   def fixture(:light, attrs \\ @create_attrs) do
     {:ok, light} = Dashboard.create_light(attrs)
@@ -27,7 +27,7 @@ defmodule ZenSkyBoard.DashboardTest do
     assert {:ok, %Light{} = light} = Dashboard.create_light(@create_attrs)
     
     assert light.color == "some color"
-    assert light.cpuid == 42
+    assert light.uid == 42
     assert light.full_name == "some full_name"
     assert light.slack_handle == "some slack_handle"
     assert light.slack_token == "some slack_token"
@@ -43,7 +43,7 @@ defmodule ZenSkyBoard.DashboardTest do
     assert %Light{} = light
     
     assert light.color == "some updated color"
-    assert light.cpuid == 43
+    assert light.uid == 43
     assert light.full_name == "some updated full_name"
     assert light.slack_handle == "some updated slack_handle"
     assert light.slack_token == "some updated slack_token"

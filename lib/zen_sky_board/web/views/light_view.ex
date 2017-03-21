@@ -17,7 +17,7 @@ defmodule ZenSkyBoard.Web.LightView do
       full_name: light.full_name,
       color: light.color,
       slack_token: light.slack_token,
-      cpuid: light.cpuid
+      uid: light.uid
     }
   end
 end

@@ -17,8 +17,8 @@ defmodule ZenSkyBoard.Web.LightController do
 
 
       {:error, changeset} ->
-        %{"cpuid" => cpuid} = light_params
-        light = Dashboard.get_light_by_cpuid(cpuid)
+        %{"uid" => uid} = light_params
+        light = Dashboard.get_light_by_uid(uid)
 
         Dashboard.update_light(light, light_params)
         DashboardChannel.broadcast_change(light)
@@ -29,8 +29,8 @@ defmodule ZenSkyBoard.Web.LightController do
     end
   end
 
-  def update(conn, %{"cpuid" => cpuid, "light" => light_params}) do
-    light = Dashboard.get_light_by_cpuid(cpuid)
+  def update(conn, %{"uid" => uid, "light" => light_params}) do
+    light = Dashboard.get_light_by_uid(uid)
 
     with {:ok, %Light{} = light} <- Dashboard.update_light(light, light_params) do
       DashboardChannel.broadcast_change(light)
@@ -40,10 +40,10 @@ defmodule ZenSkyBoard.Web.LightController do
     end
   end
 
-  def delete(conn, %{"cpuid" => cpuid}) do
-    light = Dashboard.get_light_by_cpuid(cpuid)
+  def delete(conn, %{"uid" => uid}) do
+    light = Dashboard.get_light_by_uid(uid)
     with {:ok, %Light{}} <- Dashboard.delete_light(light) do
-      DashboardChannel.broadcast_delete(cpuid)
+      DashboardChannel.broadcast_delete(uid)
       conn
       |> put_status(:ok)
       |> render("light.json", light: light)

@@ -25,7 +25,7 @@ defmodule ZenSkyBoard.Web.Router do
     pipe_through :api
 
     post "/lights", LightController, :create
-    post "/lights/:cpuid", LightController, :delete
-    post "/update_light/:cpuid", LightController, :update
+    post "/lights/:uid", LightController, :delete
+    post "/update_light/:uid", LightController, :update
   end
 end

@@ -13,16 +13,16 @@ defmodule ZenSkyBoard.Web.DashboardChannel do
       "full_name" => light.full_name,
       "color" => light.color,
       "slack_token" => light.slack_token,
-      "cpuid" => light.cpuid,
+      "uid" => light.uid,
       "id" => light.id,
     }
 
     Endpoint.broadcast("dashboard:lobby", "change", payload)
   end
 
-  def broadcast_delete(cpuid) do
+  def broadcast_delete(uid) do
     payload = %{
-      "cpuid" => cpuid,
+      "uid" => uid,
     }
 
     Endpoint.broadcast("dashboard:lobby", "delete", payload)
@@ -34,7 +34,7 @@ defmodule ZenSkyBoard.Web.DashboardChannel do
       "full_name" => light.full_name,
       "color" => light.color,
       "slack_token" => light.slack_token,
-      "cpuid" => light.cpuid,
+      "uid" => light.uid,
       "id" => light.id,
     }
 
