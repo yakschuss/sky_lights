@@ -11,16 +11,19 @@ let init = () => {
     $newLight.attr("data-uid", light["uid"])
 
     $list.append($newLight)
+    console.log(light)
   })
 
   channel.on("change", light => {
     let $li = $(`li[data-uid='${light["uid"]}']`)
     $li.css({"backgroundColor": light["color"]})
+    console.log(light)
   })
 
   channel.on("delete", light => {
     let $li = $(`li[data-uid='${light["uid"]}']`)
     $li.remove()
+    console.log(light)
   })
 }
 
