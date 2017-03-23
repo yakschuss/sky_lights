@@ -1,6 +1,16 @@
 <ul class="lights">
   <%= for light <- @lights do %>
-    <li class="light" style=<%="background-color:#{light.color}"%> data-uid=<%=light.uid%>>
+    <%
+      <<"#", hex_red::binary-size(2), hex_green::binary-size(2), hex_blue::binary-size(2)>> = String.upcase(light.color)
+      color = "rgb(#{
+        round((hex_red |> Base.decode16! |> :binary.decode_unsigned) / 1.6)
+      },#{
+        round((hex_green |> Base.decode16! |> :binary.decode_unsigned) / 1.6)
+      },#{
+        round((hex_blue |> Base.decode16! |> :binary.decode_unsigned) / 1.6)
+      })"
+    %>
+    <li class="light" style="background:radial-gradient(circle at 100px 100px, <%=light.color%>, <%=color%>);" data-uid=<%=light.uid%>>
       <div class="outer-div" >
         <div class="username">
           <p><%= String.upcase(light.slack_handle)%></p>
