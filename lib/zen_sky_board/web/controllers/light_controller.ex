@@ -11,6 +11,8 @@ defmodule ZenSkyBoard.Web.LightController do
     case Dashboard.create_light(light_params) do
       {:ok, light} ->
         DashboardChannel.broadcast_connect(light)
+        ZenSkyBoard.Dashboard.HeartBeat.start_link(light)
+
         conn
         |> put_status(:created)
         |> render("light.json", light: light)
