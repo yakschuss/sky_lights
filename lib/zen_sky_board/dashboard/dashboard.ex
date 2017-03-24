@@ -19,7 +19,7 @@ defmodule ZenSkyBoard.Dashboard do
   end
 
   def update_light(%Light{} = light, attrs) do
-    ZenSkyBoard.Dashboard.HeartBeat.call(:update, light)
+    ZenSkyBoard.Dashboard.HeartBeat.reset_expiry(light.uid)
     light
     |> color_changeset(attrs)
     |> Repo.update()

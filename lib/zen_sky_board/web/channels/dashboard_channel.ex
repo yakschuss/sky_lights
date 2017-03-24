@@ -3,7 +3,7 @@ defmodule ZenSkyBoard.Web.DashboardChannel do
 
   alias ZenSkyBoard.Web.Endpoint
 
-  def join("dashboard:lobby", payload, socket) do
+  def join("dashboard:lobby", _payload, socket) do
     {:ok, socket}
   end
 

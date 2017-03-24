@@ -14,6 +14,7 @@ defmodule ZenSkyBoard.Application do
       supervisor(ZenSkyBoard.Web.Endpoint, []),
       # Start your own worker by calling: ZenSkyBoard.Worker.start_link(arg1, arg2, arg3)
       # worker(ZenSkyBoard.Worker, [arg1, arg2, arg3]),
+      supervisor(Registry, [:unique, :light_registry]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
