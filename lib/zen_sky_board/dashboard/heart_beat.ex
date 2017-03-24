@@ -9,16 +9,19 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
     schedule_check()
     name = via_tuple(uid)
     state = %{name: name, uid: uid, expire_time: DateTime.utc_now}
+    IO.puts("Starting...")
     {:ok, state}
   end
 
   def handle_info(:check, state) do
+    IO.puts("Checking...")
     check_light_activity(state)
     schedule_check()
     {:noreply, state}
   end
 
   def handle_cast(:update, state) do
+    IO.puts("Updating...")
     Map.put(state, :expire_time, DateTime.utc_now)
     {:noreply, state}
   end
@@ -32,14 +35,17 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
   end
 
   defp schedule_check() do
+    IO.puts("Scheduling...")
     Process.send_after(self(), :check, 30000)
   end
 
   defp check_light_activity(state) do
     case expired?(state[:expire_time]) do
       false ->
+        IO.puts("Rescheduling...")
         schedule_check()
       true ->
+        IO.puts("Terminating...")
         ZenSkyBoard.Dashboard.get_light_by_uid(state[:uid])
         |> ZenSkyBoard.Dashboard.delete_light
 
