@@ -3,6 +3,7 @@ defmodule ZenSkyBoard.Web.LightController do
 
   alias ZenSkyBoard.Dashboard
   alias ZenSkyBoard.Dashboard.Light
+  alias ZenSkyBoard.Dashboard.HeartBeat
   alias ZenSkyBoard.Web.DashboardChannel
 
   action_fallback ZenSkyBoard.Web.FallbackController
@@ -11,7 +12,7 @@ defmodule ZenSkyBoard.Web.LightController do
     case Dashboard.create_light(light_params) do
       {:ok, light} ->
         DashboardChannel.broadcast_connect(light)
-        ZenSkyBoard.Dashboard.HeartBeat.start_link(light.uid)
+        HeartBeat.start_link(light.uid)
 
         conn
         |> put_status(:created)
@@ -23,6 +24,8 @@ defmodule ZenSkyBoard.Web.LightController do
         light = Dashboard.get_light_by_uid(uid)
 
         Dashboard.update_light(light, light_params)
+        DashboardChannel.broadcast_change(light)
+        HeartBeat.reset_expiry(light.uid)
 
         conn
         |> put_status(:no_content)
@@ -34,6 +37,8 @@ defmodule ZenSkyBoard.Web.LightController do
     light = Dashboard.get_light_by_uid(uid)
 
     with {:ok, %Light{} = light} <- Dashboard.update_light(light, light_params) do
+      DashboardChannel.broadcast_change(light)
+      HeartBeat.reset_expiry(light.uid)
       conn
       |> put_status(:created)
       |> render("light.json", light: light)
@@ -44,6 +49,7 @@ defmodule ZenSkyBoard.Web.LightController do
     light = Dashboard.get_light_by_uid(uid)
     with {:ok, %Light{}} <- Dashboard.delete_light(light) do
       DashboardChannel.broadcast_delete(uid)
+      HeartBeat.terminate_process(uid)
       conn
       |> put_status(:ok)
       |> render("light.json", light: light)
