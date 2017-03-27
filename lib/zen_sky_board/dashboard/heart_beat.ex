@@ -2,13 +2,13 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
   use GenServer
 
   def start_link(uid) do
-    GenServer.start_link(__MODULE__, uid)
+    name = via_tuple(uid)
+    GenServer.start_link(__MODULE__, [uid], name: name)
   end
 
   def init(uid) do
     schedule_check()
-    name = via_tuple(uid)
-    state = %{name: name, uid: uid, expire_time: DateTime.utc_now}
+    state = %{uid: uid, expire_time: DateTime.utc_now}
     IO.puts("Starting...")
     {:ok, state}
   end
@@ -22,16 +22,25 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
 
   def handle_cast(:update, state) do
     IO.puts("Updating...")
-    Map.put(state, :expire_time, DateTime.utc_now)
-    {:noreply, state}
+    new_state = Map.put(state, :expire_time, DateTime.utc_now)
+    {:noreply, new_state}
   end
 
-  # def handle_call(:stop, state) do
-  #   {:stop, :normal}
-  # end
+   def handle_cast(:stop, state) do
+     IO.puts(state)
+      ZenSkyBoard.Dashboard.get_light_by_uid(state[:uid])
+      |> ZenSkyBoard.Dashboard.delete_light
+
+      ZenSkyBoard.Web.DashboardChannel.broadcast_delete(state[:uid])
+     {:stop, :normal, state}
+   end
 
   def reset_expiry(uid) do
     GenServer.cast(via_tuple(uid), :update)
+  end
+
+  def terminate_process(uid) do
+    GenServer.cast(via_tuple(uid), :stop)
   end
 
   defp schedule_check() do
@@ -46,10 +55,7 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
         schedule_check()
       true ->
         IO.puts("Terminating...")
-        ZenSkyBoard.Dashboard.get_light_by_uid(state[:uid])
-        |> ZenSkyBoard.Dashboard.delete_light
-
-        Process.exit(self(), :kill)
+        terminate_process(state[:uid])
     end
   end
 
@@ -60,5 +66,4 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
   defp via_tuple(uid) do
     {:via, Registry, {:light_registry, uid}}
   end
-
 end

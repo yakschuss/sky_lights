@@ -23,7 +23,6 @@ defmodule ZenSkyBoard.Web.LightController do
         light = Dashboard.get_light_by_uid(uid)
 
         Dashboard.update_light(light, light_params)
-        DashboardChannel.broadcast_change(light)
 
         conn
         |> put_status(:no_content)
@@ -35,7 +34,6 @@ defmodule ZenSkyBoard.Web.LightController do
     light = Dashboard.get_light_by_uid(uid)
 
     with {:ok, %Light{} = light} <- Dashboard.update_light(light, light_params) do
-      DashboardChannel.broadcast_change(light)
       conn
       |> put_status(:created)
       |> render("light.json", light: light)
