@@ -28,5 +28,6 @@ defmodule ZenSkyBoard.Web.Router do
     post "/lights", LightController, :create
     post "/lights/:uid", LightController, :delete
     post "/update_light/:uid", LightController, :update
+    post "/heartbeat/:uid", LightController, :heartbeat
   end
 end
