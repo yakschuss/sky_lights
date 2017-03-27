@@ -3,7 +3,6 @@ defmodule ZenSkyBoard.Dashboard do
   import Ecto.{Query, Changeset}, warn: false
   alias ZenSkyBoard.Repo
   alias ZenSkyBoard.Dashboard.Light
-  alias ZenSkyBoard.Dashboard.HeartBeat
   alias ZenSkyBoard.Web.DashboardChannel
 
   def list_lights do
@@ -21,13 +20,9 @@ defmodule ZenSkyBoard.Dashboard do
   end
 
   def update_light(%Light{} = light, attrs) do
-    HeartBeat.reset_expiry(light.uid)
-
     light
     |> color_changeset(attrs)
     |> Repo.update()
-
-    DashboardChannel.broadcast_change(light)
   end
 
   def delete_light(%Light{} = light) do
