@@ -7,7 +7,6 @@ defmodule ZenSkyBoard.Dashboard.Light do
     field :color, :string
     field :slack_token, :string
     field :uid, :integer
-    field :expire_time, :naive_datetime
 
     timestamps()
   end
