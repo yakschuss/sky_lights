@@ -55,9 +55,4 @@ defmodule ZenSkyBoard.Web.LightController do
       |> render("light.json", light: light)
     end
   end
-
-  def heartbeat(conn, %{"uid" => uid}) do
-    HeartBeat.reset_expiry(uid)
-    send_resp(conn, :ok, "")
-  end
 end
