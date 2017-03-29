@@ -1,1 +1,14 @@
-<h1>It works!</h1>
+<%
+
+data = [
+  {"code", @conn.params["code"]},
+  {"client_id", "18736248306.159214907174"},
+  {"client_secret", "e215500d9c937e3dfbc353376605f43c"}
+]
+
+HTTPoison.start
+res = HTTPoison.post("https://slack.com/api/oauth.access", {:multipart, data})
+
+%>
+
+<%= res.body %>
