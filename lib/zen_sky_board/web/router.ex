@@ -17,6 +17,7 @@ defmodule ZenSkyBoard.Web.Router do
   scope "/", ZenSkyBoard.Web do
     pipe_through :browser # Use the default browser stack
 
+    get "/slack", PageController, :slack
     get "/", PageController, :index
   end
 
