@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Application do
+defmodule SkyLights.Application do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -9,17 +9,17 @@ defmodule ZenSkyBoard.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(ZenSkyBoard.Repo, []),
+      supervisor(SkyLights.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ZenSkyBoard.Web.Endpoint, []),
-      # Start your own worker by calling: ZenSkyBoard.Worker.start_link(arg1, arg2, arg3)
-      # worker(ZenSkyBoard.Worker, [arg1, arg2, arg3]),
+      supervisor(SkyLights.Web.Endpoint, []),
+      # Start your own worker by calling: SkyLights.Worker.start_link(arg1, arg2, arg3)
+      # worker(SkyLights.Worker, [arg1, arg2, arg3]),
       supervisor(Registry, [:unique, :light_registry]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: ZenSkyBoard.Supervisor]
+    opts = [strategy: :one_for_one, name: SkyLights.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

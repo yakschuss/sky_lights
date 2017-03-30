@@ -1,14 +1,14 @@
-defmodule ZenSkyBoard.Web.Endpoint do
-  use Phoenix.Endpoint, otp_app: :zen_sky_board
+defmodule SkyLights.Web.Endpoint do
+  use Phoenix.Endpoint, otp_app: :sky_lights
 
-  socket "/socket", ZenSkyBoard.Web.UserSocket
+  socket "/socket", SkyLights.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :zen_sky_board, gzip: false,
+    at: "/", from: :sky_lights, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,10 +35,10 @@ defmodule ZenSkyBoard.Web.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_zen_sky_board_key",
+    key: "_sky_lights_key",
     signing_salt: "t2MCwAos"
 
-  plug ZenSkyBoard.Web.Router
+  plug SkyLights.Web.Router
 
   @doc """
   Dynamically loads configuration from the system environment

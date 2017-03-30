@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :zen_sky_board,
-  ecto_repos: [ZenSkyBoard.Repo]
+config :sky_lights,
+  ecto_repos: [SkyLights.Repo]
 
 # Configures the endpoint
-config :zen_sky_board, ZenSkyBoard.Web.Endpoint,
+config :sky_lights, SkyLights.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "oWqpcvsC4vDzUtpmGOXBycpapesuKxJa7U/7u/lS/EYDAWHcZSTE6/cqPnzuT+xI",
-  render_errors: [view: ZenSkyBoard.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ZenSkyBoard.PubSub,
+  render_errors: [view: SkyLights.Web.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: SkyLights.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

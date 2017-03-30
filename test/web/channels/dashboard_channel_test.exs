@@ -1,7 +1,7 @@
-defmodule ZenSkyBoard.Web.DashboardChannelTest do
-  use ZenSkyBoard.Web.ChannelCase
+defmodule SkyLights.Web.DashboardChannelTest do
+  use SkyLights.Web.ChannelCase
 
-  alias ZenSkyBoard.Web.DashboardChannel
+  alias SkyLights.Web.DashboardChannel
 
   setup do
     {:ok, _, socket} =

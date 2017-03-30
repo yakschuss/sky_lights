@@ -1,9 +1,9 @@
-defmodule ZenSkyBoard.Web.UserSocket do
+defmodule SkyLights.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ZenSkyBoard.Web.RoomChannel
-  channel "dashboard:lobby", ZenSkyBoard.Web.DashboardChannel
+  # channel "room:*", SkyLights.Web.RoomChannel
+  channel "dashboard:lobby", SkyLights.Web.DashboardChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
@@ -31,7 +31,7 @@ defmodule ZenSkyBoard.Web.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     ZenSkyBoard.Web.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
+  #     SkyLights.Web.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

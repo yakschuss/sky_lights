@@ -1,5 +1,5 @@
-defmodule ZenSkyBoard.Web.ErrorView do
-  use ZenSkyBoard.Web, :view
+defmodule SkyLights.Web.ErrorView do
+  use SkyLights.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

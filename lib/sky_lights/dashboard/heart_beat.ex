@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Dashboard.HeartBeat do
+defmodule SkyLights.Dashboard.HeartBeat do
   use GenServer
 
   def start_link(uid) do
@@ -23,10 +23,10 @@ defmodule ZenSkyBoard.Dashboard.HeartBeat do
   end
 
   def handle_cast(:stop, state) do
-    ZenSkyBoard.Dashboard.get_light_by_uid(state[:uid])
-    |> ZenSkyBoard.Dashboard.delete_light
+    SkyLights.Dashboard.get_light_by_uid(state[:uid])
+    |> SkyLights.Dashboard.delete_light
 
-    ZenSkyBoard.Web.DashboardChannel.broadcast_delete(state[:uid])
+    SkyLights.Web.DashboardChannel.broadcast_delete(state[:uid])
     {:stop, :normal, state}
   end
 

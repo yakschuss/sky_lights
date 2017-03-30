@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Dashboard.Light do
+defmodule SkyLights.Dashboard.Light do
   use Ecto.Schema
   
   schema "dashboard_lights" do

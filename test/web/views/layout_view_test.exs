@@ -1,3 +1,3 @@
-defmodule ZenSkyBoard.Web.LayoutViewTest do
-  use ZenSkyBoard.Web.ConnCase, async: true
+defmodule SkyLights.Web.LayoutViewTest do
+  use SkyLights.Web.ConnCase, async: true
 end

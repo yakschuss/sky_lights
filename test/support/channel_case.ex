@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Web.ChannelCase do
+defmodule SkyLights.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule ZenSkyBoard.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint ZenSkyBoard.Web.Endpoint
+      @endpoint SkyLights.Web.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ZenSkyBoard.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SkyLights.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ZenSkyBoard.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(SkyLights.Repo, {:shared, self()})
     end
     :ok
   end

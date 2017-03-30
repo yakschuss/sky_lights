@@ -1,4 +1,4 @@
-# ZenSkyBoard
+# SkyLights
 
 To start your Phoenix server:
 

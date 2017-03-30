@@ -1,9 +1,9 @@
-defmodule ZenSkyBoard.Dashboard do
+defmodule SkyLights.Dashboard do
 
   import Ecto.{Query, Changeset}, warn: false
-  alias ZenSkyBoard.Repo
-  alias ZenSkyBoard.Dashboard.Light
-  alias ZenSkyBoard.Web.DashboardChannel
+  alias SkyLights.Repo
+  alias SkyLights.Dashboard.Light
+  alias SkyLights.Web.DashboardChannel
 
   def list_lights do
     Repo.all(Light)

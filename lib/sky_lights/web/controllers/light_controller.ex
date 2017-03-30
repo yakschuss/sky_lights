@@ -1,12 +1,12 @@
-defmodule ZenSkyBoard.Web.LightController do
-  use ZenSkyBoard.Web, :controller
+defmodule SkyLights.Web.LightController do
+  use SkyLights.Web, :controller
 
-  alias ZenSkyBoard.Dashboard
-  alias ZenSkyBoard.Dashboard.Light
-  alias ZenSkyBoard.Dashboard.HeartBeat
-  alias ZenSkyBoard.Web.DashboardChannel
+  alias SkyLights.Dashboard
+  alias SkyLights.Dashboard.Light
+  alias SkyLights.Dashboard.HeartBeat
+  alias SkyLights.Web.DashboardChannel
 
-  action_fallback ZenSkyBoard.Web.FallbackController
+  action_fallback SkyLights.Web.FallbackController
 
   def create(conn, %{"light" => light_params}) do
     case Dashboard.create_light(light_params) do

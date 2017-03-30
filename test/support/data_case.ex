@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.DataCase do
+defmodule SkyLights.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule ZenSkyBoard.DataCase do
 
   using do
     quote do
-      alias ZenSkyBoard.Repo
+      alias SkyLights.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import ZenSkyBoard.DataCase
+      import SkyLights.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ZenSkyBoard.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SkyLights.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ZenSkyBoard.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(SkyLights.Repo, {:shared, self()})
     end
 
     :ok

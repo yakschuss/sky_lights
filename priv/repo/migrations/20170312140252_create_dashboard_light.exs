@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Repo.Migrations.CreateZenSkyBoard.Dashboard.Light do
+defmodule SkyLights.Repo.Migrations.CreateSkyLights.Dashboard.Light do
   use Ecto.Migration
 
   def change do

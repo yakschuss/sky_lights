@@ -1,6 +1,6 @@
-defmodule ZenSkyBoard.Web.LightView do
-  use ZenSkyBoard.Web, :view
-  alias ZenSkyBoard.Web.LightView
+defmodule SkyLights.Web.LightView do
+  use SkyLights.Web, :view
+  alias SkyLights.Web.LightView
 
   def render("index.json", %{lights: lights}) do
     %{data: render_many(lights, LightView, "light.json")}

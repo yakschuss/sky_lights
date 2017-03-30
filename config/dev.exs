@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :zen_sky_board, ZenSkyBoard.Web.Endpoint,
+config :sky_lights, SkyLights.Web.Endpoint,
   http: [port: 80],
   debug_errors: true,
   code_reloader: true,
@@ -31,13 +31,13 @@ config :zen_sky_board, ZenSkyBoard.Web.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :zen_sky_board, ZenSkyBoard.Web.Endpoint,
+config :sky_lights, SkyLights.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/zen_sky_board/web/views/.*(ex)$},
-      ~r{lib/zen_sky_board/web/templates/.*(eex)$}
+      ~r{lib/sky_lights/web/views/.*(ex)$},
+      ~r{lib/sky_lights/web/templates/.*(eex)$}
     ]
   ]
 
@@ -49,10 +49,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :zen_sky_board, ZenSkyBoard.Repo,
+config :sky_lights, SkyLights.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "zen_sky_board_dev",
+  database: "sky_lights_dev",
   hostname: "localhost",
   pool_size: 10

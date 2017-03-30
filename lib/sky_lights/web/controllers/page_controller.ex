@@ -1,7 +1,7 @@
-defmodule ZenSkyBoard.Web.PageController do
-  use ZenSkyBoard.Web, :controller
+defmodule SkyLights.Web.PageController do
+  use SkyLights.Web, :controller
 
-  alias ZenSkyBoard.Dashboard
+  alias SkyLights.Dashboard
 
   def slack(conn, _params) do
     render(conn, "slack.html")

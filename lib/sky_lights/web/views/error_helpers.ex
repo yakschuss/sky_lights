@@ -1,4 +1,4 @@
-defmodule ZenSkyBoard.Web.ErrorHelpers do
+defmodule SkyLights.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule ZenSkyBoard.Web.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(ZenSkyBoard.Web.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SkyLights.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ZenSkyBoard.Web.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SkyLights.Web.Gettext, "errors", msg, opts)
     end
   end
 end

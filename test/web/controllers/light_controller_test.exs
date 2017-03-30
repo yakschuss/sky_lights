@@ -1,8 +1,8 @@
-defmodule ZenSkyBoard.Web.LightControllerTest do
-  use ZenSkyBoard.Web.ConnCase
+defmodule SkyLights.Web.LightControllerTest do
+  use SkyLights.Web.ConnCase
 
-  alias ZenSkyBoard.Dashboard
-  alias ZenSkyBoard.Dashboard.Light
+  alias SkyLights.Dashboard
+  alias SkyLights.Dashboard.Light
 
   @create_attrs %{color: "some color", uid: 42, full_name: "some full_name", slack_handle: "some slack_handle", slack_token: "some slack_token"}
   @update_attrs %{color: "some updated color", uid: 43, full_name: "some updated full_name", slack_handle: "some updated slack_handle", slack_token: "some updated slack_token"}

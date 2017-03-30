@@ -1,5 +1,5 @@
-defmodule ZenSkyBoard.Web.PageControllerTest do
-  use ZenSkyBoard.Web.ConnCase
+defmodule SkyLights.Web.PageControllerTest do
+  use SkyLights.Web.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

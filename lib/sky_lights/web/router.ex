@@ -1,5 +1,5 @@
-defmodule ZenSkyBoard.Web.Router do
-  use ZenSkyBoard.Web, :router
+defmodule SkyLights.Web.Router do
+  use SkyLights.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,7 +14,7 @@ defmodule ZenSkyBoard.Web.Router do
 
   end
 
-  scope "/", ZenSkyBoard.Web do
+  scope "/", SkyLights.Web do
     pipe_through :browser # Use the default browser stack
 
     get "/slack", PageController, :slack
@@ -22,7 +22,7 @@ defmodule ZenSkyBoard.Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", ZenSkyBoard.Web do
+  scope "/api", SkyLights.Web do
     pipe_through :api
 
     post "/lights", LightController, :create

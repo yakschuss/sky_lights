@@ -1,4 +1,4 @@
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(ZenSkyBoard.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(SkyLights.Repo, :manual)
 

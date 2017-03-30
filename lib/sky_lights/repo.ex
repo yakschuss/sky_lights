@@ -1,5 +1,5 @@
-defmodule ZenSkyBoard.Repo do
-  use Ecto.Repo, otp_app: :zen_sky_board
+defmodule SkyLights.Repo do
+  use Ecto.Repo, otp_app: :sky_lights
 
   @doc """
   Dynamically loads the repository url from the
